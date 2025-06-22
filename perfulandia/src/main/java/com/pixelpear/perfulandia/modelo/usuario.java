@@ -15,6 +15,7 @@ public class usuario {
 
     private String nombre;
     private String correo;
+    private String contrasena;
     private String rol;
     private Boolean activo;
 

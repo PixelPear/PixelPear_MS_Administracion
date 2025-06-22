@@ -15,6 +15,9 @@ public class usuario_DTO {
     @Email(message = "Debe ingresar correo valido (formato a@a.a)")
     private String correo;
 
+    @NotBlank(message = "Campo obligatorio, favor ingresar contraseña")
+    private String contrasena;
+
     @NotBlank(message = "Rol obligatorio")
     private String rol;
 

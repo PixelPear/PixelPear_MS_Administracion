@@ -25,6 +25,7 @@ public class usuario_servicio {
             usuario usuario = new usuario();
             usuario.setNombre(dto.getNombre());
             usuario.setCorreo(dto.getCorreo());
+            usuario.setContrasena(dto.getContrasena());
             usuario.setRol(dto.getRol());
             usuario.setActivo(dto.getActivo());
             return usuarioRepositorio.save(usuario);

@@ -43,7 +43,7 @@ public class usuario_controlador {
     }
 
 
-        @GetMapping("/{id}")
+        @GetMapping("/mostarID")
     public ResponseEntity<usuario> obtenerPorId(@PathVariable Long id) {
         usuario user = usuarioService.obtenerPorId(id);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
