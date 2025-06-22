@@ -41,6 +41,11 @@ public class usuario_servicio {
             }).orElse(null);
         }
 
+        public usuario obtenerPorId(Long id) {
+            return usuarioRepositorio.findById(id).orElse(null);
+        }
+
+
         public void eliminarUsuario(Long id){
             usuarioRepositorio.deleteById(id);
         }
