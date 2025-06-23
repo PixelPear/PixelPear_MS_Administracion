@@ -1,12 +1,22 @@
 package com.pixelpear.perfulandia.controladorTest;
 
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.pixelpear.perfulandia.controlador.usuario_controlador;
@@ -23,6 +33,9 @@ public class usuario_controladorTest {
     @MockBean
     private usuario_servicio usuarioServicio;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     void testCrearUsuario() throws Exception {
         usuario_DTO dto = new usuario_DTO();
@@ -34,19 +47,14 @@ public class usuario_controladorTest {
 
         when(usuarioServicio.guardarUsuarioDTO(any(usuario_DTO.class))).thenReturn(esperado);
 
+        String json = objectMapper.writeValueAsString(dto);
+
         mockMvc.perform(post("/api/v1/usuario/crearusuario")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                {
-                  "nombre": "Josefina",
-                  "correo": "josefina@pixelpear.com",
-                  "contrasena": "clave123",
-                  "rol": "empleado"
-                }
-                """))
+                .content(json))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.nombre").value("Ana"))
-            .andExpect(jsonPath("$.correo").value("ana@mail.com"));
+            .andExpect(jsonPath("$.nombre").value("Josefina"))
+            .andExpect(jsonPath("$.correo").value("josefina@pixelpear.com"));
     }
 
 }
