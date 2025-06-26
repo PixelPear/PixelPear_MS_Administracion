@@ -1,11 +1,12 @@
 package com.pixelpear.perfulandia.dto;
+import org.springframework.hateoas.RepresentationModel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class usuario_DTO {
+public class usuario_DTO extends RepresentationModel<usuario_DTO> {
     private Long id;
 
     @NotBlank(message = "Campo obligatorio, ingrese nombre por favor.")
