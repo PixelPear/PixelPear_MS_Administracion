@@ -54,4 +54,10 @@ public class usuario_controlador {
     public String ping() {
         return "pong";
     }
+
+    public Class<?> obtenerTodos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerTodos'");
+    }
+    
 }
